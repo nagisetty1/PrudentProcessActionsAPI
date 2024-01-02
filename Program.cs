@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging.Console;
 using System.Reflection;
 
 namespace PrudentProcessActionsAPI
