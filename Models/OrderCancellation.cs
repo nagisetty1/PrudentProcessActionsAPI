@@ -1,8 +1,11 @@
-﻿namespace PrudentProcessActionsAPI.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PrudentProcessActionsAPI.Models
 {
     public class OrderCancellation
     {
-        public int OrderId { get; set; }
+        [Key]
+        public int OrderCancellationId { get; set; }
         public string Reason { get; set; }
         // Add other properties as needed
     }

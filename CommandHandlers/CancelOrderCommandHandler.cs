@@ -1,5 +1,7 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using PrudentProcessActionsAPI.Commands;
+using PrudentProcessActionsAPI.Data;
 using PrudentProcessActionsAPI.Models;
 using System.Diagnostics;
 
@@ -10,9 +12,16 @@ namespace PrudentProcessActionsAPI.CommandHandlers
         public Task<OrderCancellation> Handle(CancelOrderCommand request, CancellationToken cancellationToken)
         {
             Debug.WriteLine($"CancelOrderCommandHandler.Handle: {request.OrderId}");
-            // Logic to cancel the order
+
+            EntityEntry<OrderCancellation> orderCancellation = null;
+            using (var context = new ApplicationDbContext())
+            {
+                orderCancellation = context.CancelledOrders.Add(new OrderCancellation { OrderCancellationId = request.OrderId });
+                context.SaveChanges();
+            }
+
             // For simplicity, just returning the cancellation details
-            return Task.FromResult(new OrderCancellation { OrderId = request.OrderId });
+            return Task.FromResult(orderCancellation.Entity);
         }
     }
 }
