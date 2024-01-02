@@ -13,9 +13,9 @@ namespace PrudentProcessActionsAPI.Controllers
     public class ProcessActionController : Controller
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<ProcessActionController> _logger;
 
-        public ProcessActionController(ILogger<WeatherForecastController> logger, IMediator mediator)
+        public ProcessActionController(ILogger<ProcessActionController> logger, IMediator mediator)
         {
             _logger = logger;
             _mediator = mediator;
