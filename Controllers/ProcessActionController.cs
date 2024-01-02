@@ -27,7 +27,8 @@ namespace PrudentProcessActionsAPI.Controllers
             try
             {
                 _logger.LogInformation($"Request received for action: {actionContextApiRequest.Action} and data: {actionContextApiRequest.Data}");
-                //store request directly to database
+
+                //store request data directly to database
                 await _mediator.Send(new PersistRequestDataCommand() { JsonData = JsonConvert.SerializeObject(actionContextApiRequest) });
 
                 switch (actionContextApiRequest.Action)
